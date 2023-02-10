@@ -18,27 +18,38 @@ def DoubleCipherEncryption():
     line=input("Please enter a sentence: ")
     valid=line.isascii()
     if(valid==True):
-        arr1=[[]]
         columns=len(line)# length of string is the number of columns
         rows=k1# number of rows
-        #encryptTable=[[0]*col]*rows
-        #print(encryptTable)
+        placeholder='empty'
+        
+        arr1 = [[placeholder for x in range(len(line))]for y in range(k1)]
+        #arr1=[columns[rows]]         
+        
+        x=0
+        row=0
+        col=0
+        down=True
+        for col in range(columns):
+            arr1[row][col]=line[col]
+            if row==0:
+                down=True
+            
+            if row==k1-1:
+                down=False
+            
+            if down==True:
+                row=row+1
+                
+            if down==False:
+                row=row-1
+        
+        cipherText=[]
         for row in range(rows):
-            x=row
-            y=0
-            for column in range(columns):
-                for char in line:
-                    if y%k1==0:
-                    #arr1.insert(x,char)
-                        arr1[x][y]=char
-                        y=y+1
-            x=x+1
-            for char in line:
-                if y%k1==1:
-                    arr1[x][y]=char
-        print(arr1)
-
-        pass
+            for col in range(columns):
+                if arr1[row][col]!=placeholder:
+                    cipherText.append(arr1[row][col])
+        print(cipherText)
+                
     else:
         print("Invalid input")
 
