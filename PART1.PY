@@ -10,7 +10,6 @@ alphabet=[' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>
 def DoubleCipherEncryption():
     #32-47 range for special characters
     #58=126 range for upper, lower case letters and other special symbols
-    #alphabet=[" ","!",","#",$,%,&,',(,),*,+]
     size=26+26
     
     #Rail Fence Algorithm key
