@@ -4,7 +4,6 @@
 from array import *
 print(len("hello class"))
 
-
 def DoubleCipherEncryption():
     #32-47 range for special characters
     #58=126 range for upper, lower case letters and other special symbols
@@ -20,16 +19,23 @@ def DoubleCipherEncryption():
     valid=line.isascii()
     if(valid==True):
         arr1=[[]]
-        cols=len(line)# length of string is the number of columns
+        columns=len(line)# length of string is the number of columns
         rows=k1# number of rows
         #encryptTable=[[0]*col]*rows
         #print(encryptTable)
-        for char in line:
-            for row in rows:
-                x=0
-                for cols in row:
-                    arr1.insert(x,char)
-                    x=x+1
+        for row in range(rows):
+            x=row
+            y=0
+            for column in range(columns):
+                for char in line:
+                    if y%k1==0:
+                    #arr1.insert(x,char)
+                        arr1[x][y]=char
+                        y=y+1
+            x=x+1
+            for char in line:
+                if y%k1==1:
+                    arr1[x][y]=char
         print(arr1)
 
         pass
@@ -41,7 +47,7 @@ def DoubleCipherDencryption():
     pass
 
 sentence=DoubleCipherEncryption()
-print(sentence)
+#print(sentence)
 
 
 
