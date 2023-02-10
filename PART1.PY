@@ -4,12 +4,13 @@
 from array import *
 print(len("hello class"))
 
+alphabet=[' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+              'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
+
 def DoubleCipherEncryption():
     #32-47 range for special characters
     #58=126 range for upper, lower case letters and other special symbols
     #alphabet=[" ","!",","#",$,%,&,',(,),*,+]
-    alphabet=[' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
-              'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
     size=26+26
     
     #Rail Fence Algorithm key
@@ -61,15 +62,22 @@ def DoubleCipherEncryption():
             CaesarCipherText.append(alphabet[position])
         print()
         print(CaesarCipherText)
-                
+        return CaesarCipherText
     else:
         print("Invalid input")
 
 
-def DoubleCipherDencryption():
-    pass
+def DoubleCipherDencryption(CipherText):
+    CaesarKey=1
+    RailCipherText=[]
+    for char in CipherText:
+        position=alphabet.index(char)
+        position=position-CaesarKey
+        RailCipherText.append(alphabet[position])
+    print(RailCipherText)
 
 sentence=DoubleCipherEncryption()
+DoubleCipherDencryption(sentence)
 #print(sentence)
 
 
