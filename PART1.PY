@@ -74,6 +74,39 @@ def DoubleCipherDencryption(CipherText):
         position=position-CaesarKey
         RailCipherText.append(alphabet[position])
     print(RailCipherText)
+    
+    placeholder="empty"
+    railKey=2
+    arr1 = [[placeholder for x in range(len(RailCipherText))]for y in range(railKey)]
+    columns=len(RailCipherText)
+    rows=railKey
+    #row=0
+    position=0
+    for row in range(rows):
+        for col in range(columns):
+            if col%railKey==0:
+                arr1[row][col]=RailCipherText[position]
+                print("here")
+                position=position+1
+        #position=0    
+        #if col==columns:
+         #   row=row+1
+    
+    print()
+    print(arr1)
+    decryptedText=[]
+    position=0
+    row=0
+    for col in range(columns):
+        for row in range(rows):
+            if arr1[row][col]!=placeholder:
+                decryptedText.append(arr1[row][position])
+    print()
+    print(decryptedText)
+            
+        
+        
+            
 
 sentence=DoubleCipherEncryption()
 DoubleCipherDencryption(sentence)
