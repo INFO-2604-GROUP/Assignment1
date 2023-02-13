@@ -64,6 +64,10 @@ if(valid==True):
             CaesarCipherText.append(alphabet[position])
     print()
     print(CaesarCipherText)
+    
+    g = open("Rowley.dat", "w")
+    g.writelines(CaesarCipherText)
+    g.close() 
         
 else:
     print("Invalid input")
