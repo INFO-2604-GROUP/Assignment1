@@ -2,7 +2,6 @@
 #CHE DICKENSON
 
 from array import *
-print(len("hello class"))
 
 alphabet=[' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
               'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
@@ -10,7 +9,7 @@ alphabet=[' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>
 def DoubleCipherEncryption():
     #32-47 range for special characters
     #58=126 range for upper, lower case letters and other special symbols
-    size=26+26
+    size=26+26+24
     
     #Rail Fence Algorithm key
     k1=2
