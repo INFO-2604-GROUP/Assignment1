@@ -1,4 +1,5 @@
 from array import *
+from socket import *
 
 alphabet=['\n',' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
               'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
@@ -8,12 +9,13 @@ f = open("NoMoreMurders.dat", "r")
 plainText=f.read()
 
 # DoubleCipher Encryption
-
+RailKey=input("Please enter a Rail Fence Cipher key: ")
+CaesarKey=input("Please enter a Caesar Cipher key: ")
 #Rail Fence Algorithm key
-k1=2
+k1=RailKey
 
 #Caesar Cipher Algorithm key
-k2=1
+k2=CaesarKey
     
 
 valid=plainText.isascii()
@@ -65,9 +67,18 @@ if(valid==True):
     print()
     print(CaesarCipherText)
     
-    g = open("Rowley.dat", "w")
-    g.writelines(CaesarCipherText)
-    g.close() 
+    #g = open("Rowley.dat", "w")
+    #g.writelines(CaesarCipherText)
+    #g.close()
+    
+    serverName = "localhost"
+    serverPort=12009 
+    
+    clientSocket = socket(AF_INET, SOCK_STREAM)
+    clientSocket.connect((serverName,serverPort))
+    clientSocket.send(bytes(CaesarCipherText, "utf-8"))
+    
+    clientSocket.close()
         
 else:
     print("Invalid input")
