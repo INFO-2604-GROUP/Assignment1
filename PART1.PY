@@ -68,7 +68,7 @@ def DoubleCipherEncryption(line,RailKey,CaesarKey):
             else:
                 CaesarCipherText.append(alphabet[position])
         print()
-        print(CaesarCipherText)
+        print(len(CaesarCipherText))
         return CaesarCipherText
     else:
         print("Invalid input")
@@ -92,29 +92,54 @@ def DoubleCipherDencryption(CipherText,RailKey,CaesarKey):
     arr1 = [[placeholder for x in range(len(RailCipherText))]for y in range(railKey)]
     columns=len(RailCipherText)
     rows=railKey
-    #row=0
-    position=0
-    for row in range(rows):
-        for col in range(columns):
-            if col%railKey==0:
-                arr1[row][col]=RailCipherText[position]
-                print("here")
-                position=position+1
-        #position=0    
-        #if col==columns:
-         #   row=row+1
-    
+    row=0
+    col=0
+    down=True
+    for col in range(columns):
+        arr1[row][col]="here"
+        if row==0:
+            down=True
+            
+        if row==railKey-1:
+            down=False
+            
+        if down==True:
+            row=row+1
+                
+        if down==False:
+            row=row-1
+            
     print()
     print(arr1)
     decryptedText=[]
     position=0
     row=0
+    plainText=[]
+    for row in range(rows):
+        for col in range(columns):
+            if arr1[row][col]=="here":
+                arr1[row][col]=RailCipherText[position]
+                position=position+1
+    
+    row=0
+    col=0
+    down=True
     for col in range(columns):
-        for row in range(rows):
-            if arr1[row][col]!=placeholder:
-                decryptedText.append(arr1[row][position])
+        if arr1[row][col]!=placeholder:
+            plainText.append(arr1[row][col])
+        if row==0:
+            down=True
+            
+        if row==railKey-1:
+            down=False
+            
+        if down==True:
+            row=row+1
+                
+        if down==False:
+            row=row-1
     print()
-    print(decryptedText)
+    print(plainText)
             
         
         
