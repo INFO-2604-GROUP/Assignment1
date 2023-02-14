@@ -72,7 +72,7 @@ if(valid==True):
     #g.close()
     
     serverName = "localhost"
-    serverPort=12009 
+    serverPort=8080 
     text="hello from the other side"
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((serverName,serverPort))
