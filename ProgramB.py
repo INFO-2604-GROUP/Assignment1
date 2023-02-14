@@ -12,11 +12,14 @@ while 1:
 
     
     print ("Received From Client: ", CipherText)
+    g = open("Rowley.dat", "w")
+    g.writelines(CipherText)
+    g.close()
 	 
-    # send back modified sentence over the TCP connection
+    
     #connectionSocket.send(capitalizedSentence)
 
-    # output to console the sentence sent back to the client 
+   
     #print ("Sent back to Client: ", capitalizedSentence)
 	 
     # close the TCP connection; the welcoming socket continues

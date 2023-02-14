@@ -6,6 +6,7 @@ from array import *
 alphabet=[' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
               'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
+size=26+26+24
 line=input("Please enter a sentence: ")
 RailKey=input("Please enter a Rail Fence Cipher key: ")
 CaesarKey=input("Please enter a Caesar Cipher key: ")
@@ -13,13 +14,12 @@ CaesarKey=input("Please enter a Caesar Cipher key: ")
 def DoubleCipherEncryption(line,RailKey,CaesarKey):
     #32-47 range for special characters
     #58=126 range for upper, lower case letters and other special symbols
-    size=26+26+24
     
     #Rail Fence Algorithm key
-    k1=RailKey
+    k1=int(RailKey)
 
     #Caesar Cipher Algorithm key
-    k2=CaesarKey
+    k2=int(CaesarKey)
     
     valid=line.isascii()
     if(valid==True):
@@ -60,7 +60,13 @@ def DoubleCipherEncryption(line,RailKey,CaesarKey):
         for char in RailCipherText:
             position=alphabet.index(char)
             position=position+k2
-            CaesarCipherText.append(alphabet[position])
+            if(position>size):
+                excess=position-size
+                position=0
+                position=position+excess
+                CaesarCipherText.append(alphabet[position])
+            else:
+                CaesarCipherText.append(alphabet[position])
         print()
         print(CaesarCipherText)
         return CaesarCipherText
@@ -68,17 +74,21 @@ def DoubleCipherEncryption(line,RailKey,CaesarKey):
         print("Invalid input")
 
 
-def DoubleCipherDencryption(CipherText):
-    CaesarKey=1
+def DoubleCipherDencryption(CipherText,RailKey,CaesarKey):
+    caesarKey=int(CaesarKey)
     RailCipherText=[]
     for char in CipherText:
         position=alphabet.index(char)
-        position=position-CaesarKey
-        RailCipherText.append(alphabet[position])
+        position=position-caesarKey
+        if(position<0):
+            position=size+position
+            RailCipherText.append(alphabet[position])
+        else:
+            RailCipherText.append(alphabet[position])
     print(RailCipherText)
     
     placeholder="empty"
-    railKey=2
+    railKey=int(RailKey)
     arr1 = [[placeholder for x in range(len(RailCipherText))]for y in range(railKey)]
     columns=len(RailCipherText)
     rows=railKey
@@ -111,7 +121,7 @@ def DoubleCipherDencryption(CipherText):
             
 
 sentence=DoubleCipherEncryption(line,RailKey,CaesarKey)
-DoubleCipherDencryption(sentence)
+DoubleCipherDencryption(sentence,RailKey,CaesarKey)
 #print(sentence)
 
 
