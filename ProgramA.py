@@ -73,9 +73,10 @@ if(valid==True):
     
     serverName = "localhost"
     serverPort=8080 
+   
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((serverName,serverPort))
-    clientSocket.send(bytes(CaesarCipherText, encoding="utf-8"))
+    clientSocket.send(bytes(''.join(CaesarCipherText), encoding="utf-8"))
     
     clientSocket.close()
         
