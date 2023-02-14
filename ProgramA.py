@@ -12,10 +12,10 @@ plainText=f.read()
 RailKey=input("Please enter a Rail Fence Cipher key: ")
 CaesarKey=input("Please enter a Caesar Cipher key: ")
 #Rail Fence Algorithm key
-k1=RailKey
+k1=int(RailKey)
 
 #Caesar Cipher Algorithm key
-k2=CaesarKey
+k2=int(CaesarKey)
     
 
 valid=plainText.isascii()
@@ -73,10 +73,10 @@ if(valid==True):
     
     serverName = "localhost"
     serverPort=12009 
-    
+    text="hello from the other side"
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((serverName,serverPort))
-    clientSocket.send(bytes(CaesarCipherText, "utf-8"))
+    clientSocket.send(bytes(text, "utf-8"))
     
     clientSocket.close()
         

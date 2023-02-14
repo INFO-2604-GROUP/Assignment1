@@ -6,18 +6,21 @@ from array import *
 alphabet=[' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
               'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 
-def DoubleCipherEncryption():
+line=input("Please enter a sentence: ")
+RailKey=input("Please enter a Rail Fence Cipher key: ")
+CaesarKey=input("Please enter a Caesar Cipher key: ")
+
+def DoubleCipherEncryption(line,RailKey,CaesarKey):
     #32-47 range for special characters
     #58=126 range for upper, lower case letters and other special symbols
     size=26+26+24
     
     #Rail Fence Algorithm key
-    k1=2
+    k1=RailKey
 
     #Caesar Cipher Algorithm key
-    k2=1
+    k2=CaesarKey
     
-    line=input("Please enter a sentence: ")
     valid=line.isascii()
     if(valid==True):
         columns=len(line)# length of string is the number of columns
@@ -107,7 +110,7 @@ def DoubleCipherDencryption(CipherText):
         
             
 
-sentence=DoubleCipherEncryption()
+sentence=DoubleCipherEncryption(line,RailKey,CaesarKey)
 DoubleCipherDencryption(sentence)
 #print(sentence)
 
