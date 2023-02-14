@@ -12,8 +12,8 @@ while 1:
 
     
     print ("Received From Client: ", CipherText)
-    g = open("Rowley.dat", "w")
-    g.writelines(CipherText)
+    g = open("ServerRowley.dat", "w")
+    g.writelines(CipherText.decode("utf-8"))
     g.close()
 	 
     

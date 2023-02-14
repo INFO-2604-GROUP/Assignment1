@@ -67,16 +67,15 @@ if(valid==True):
     print()
     print(CaesarCipherText)
     
-    #g = open("Rowley.dat", "w")
-    #g.writelines(CaesarCipherText)
-    #g.close()
+    g = open("Rowley.dat", "w")
+    g.writelines(CaesarCipherText)
+    g.close()
     
     serverName = "localhost"
     serverPort=8080 
-    text="hello from the other side"
     clientSocket = socket(AF_INET, SOCK_STREAM)
     clientSocket.connect((serverName,serverPort))
-    clientSocket.send(bytes(text, "utf-8"))
+    clientSocket.send(bytes(CaesarCipherText, encoding="utf-8"))
     
     clientSocket.close()
         
