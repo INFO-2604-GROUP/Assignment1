@@ -11,23 +11,92 @@ serverSocket.bind(("",serverPort))
 serverSocket.listen(1)
 
 print("How many keys do you wish to use to crack the encryption")
-RailKEY_MAX=input("From 1 to (unknown), how many rail cipher keys do you want to try? : ")
-CeasrKEY_MAX=input("From 1 to (unknown), how many ceasar cipher keys do you want to try? : ")
+RailKEY_MAX_str=input("From 1 to (unknown), how many rail cipher keys do you want to try? : ")
+CeasrKEY_MAX_str=input("From 1 to (unknown), how many ceasar cipher keys do you want to try? : ")
+RailKEY_MAX=int(RailKEY_MAX_str)
+CeasrKEY_MAX=int(CeasrKEY_MAX_str)
+
 while 1:
     connectionSocket, addr = serverSocket.accept()
     CipherText = connectionSocket.recv(1024)
 
     
-    print ("Received From Client: ", CipherText)
+    #print ("Received From Client: ", CipherText)
     g = open("ServerRowley.dat", "w")
     g.writelines(CipherText.decode("utf-8"))
     g.close()
-	 
+        
+    g = open("ServerRowley.dat", "r")
+    CipherText=g.read()
     
-    #connectionSocket.send(capitalizedSentence)
-
+    #print(CipherText)
+    #Ceaser Decryption
+    RailCipherText=[]
+    position=0
+    placeholder="empty"
+    for ceaserKey in range(CeasrKEY_MAX):
+        for char in CipherText:
+            position=alphabet.index(char)
+            position=position-ceaserKey
+            if(position<0):
+                position=size+position
+                RailCipherText.append(alphabet[position])
+            else:
+                RailCipherText.append(alphabet[position])
+            
+        print(RailCipherText)
+        #Rail Fence Decryption
+        for railKey in range(RailKEY_MAX):
+            railKey=2
+            if railKey==0:
+                continue
+            #print(railKey)
+            arr1 = [[placeholder for x in range(len(RailCipherText))]for y in range(railKey)]
+            columns=len(RailCipherText)
+            row=0
+            down=True
+            for col in range(columns):
+                arr1[row][col]="here"
+                if row==0:
+                    down=True
+                        
+                if row==railKey-1:
+                    down=False
+                        
+                if down==True:
+                    row=row+1
+                            
+                if down==False:
+                    row=row-1
+            decryptedText=[]
+            position=0
+            row=0
+            plainText=[]
+            for row in range(railKey):
+                for col in range(columns):
+                    if arr1[row][col]=="here":
+                        arr1[row][col]=RailCipherText[position]
+                        position=position+1
+                
+            row=0
+            col=0
+            down=True
+            for col in range(columns):
+                if arr1[row][col]!=placeholder:
+                    plainText.append(arr1[row][col])
+                if row==0:
+                    down=True
+                        
+                if row==railKey-1:
+                    down=False
+                        
+                if down==True:
+                    row=row+1
+                            
+                if down==False:
+                    row=row-1
+            print()
+            print(plainText)
+                
    
-    #print ("Sent back to Client: ", capitalizedSentence)
-	 
-    # close the TCP connection; the welcoming socket continues
-    connectionSocket.close()
+connectionSocket.close()
