@@ -34,7 +34,8 @@ while 1:
     RailCipherText=[]
     position=0
     placeholder="empty"
-    for ceaserKey in range(CeasrKEY_MAX):
+    for ceaserKey in range(1,CeasrKEY_MAX+1):
+        
         for char in CipherText:
             position=alphabet.index(char)
             position=position-ceaserKey
@@ -44,11 +45,11 @@ while 1:
             else:
                 RailCipherText.append(alphabet[position])
             
-        print(RailCipherText)
+        #+print(RailCipherText)
         #Rail Fence Decryption
-        for railKey in range(RailKEY_MAX):
-            railKey=2
-            if railKey==0:
+        for railKey in range(2,RailKEY_MAX+2):
+            #railKey=2
+            if railKey<2:
                 continue
             #print(railKey)
             arr1 = [[placeholder for x in range(len(RailCipherText))]for y in range(railKey)]
