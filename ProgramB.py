@@ -97,7 +97,7 @@ while 1:
                 if down==False:
                     row=row-1
             print()
-            print(plainText)
+            print(''.join(plainText))
                 
    
-connectionSocket.close()
+    connectionSocket.close()
