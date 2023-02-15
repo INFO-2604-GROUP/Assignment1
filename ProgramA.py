@@ -4,8 +4,8 @@ from socket import *
 alphabet=['\n',' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
               'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']
 size=26+26+24
-#f = open("NoMoreMurders.dat", "r")
-f=open("test.txt",'r')
+f = open("NoMoreMurders.dat", "r")
+#f=open("test.txt",'r')
 plainText=f.read()
 
 # DoubleCipher Encryption
