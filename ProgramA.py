@@ -50,14 +50,14 @@ if(valid==True):
         for col in range(columns):
             if arr1[row][col]!=placeholder:
                 RailCipherText.append(arr1[row][col])
-    print(RailCipherText)
+    #print(RailCipherText)
         
     #Caesar Cipher
     CaesarCipherText=[]
     for char in RailCipherText:
         position=alphabet.index(char)
         position=position+k2
-        if(position>size):
+        if(position>=size):
             excess=position-size
             position=0
             position=position+excess
@@ -68,7 +68,7 @@ if(valid==True):
     print(CaesarCipherText)
     
     g = open("Rowley.dat", "w")
-    g.writelines(CaesarCipherText)
+    g.write("".join(CaesarCipherText))
     g.close()
     
     serverName = "localhost"

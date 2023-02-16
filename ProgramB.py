@@ -21,9 +21,9 @@ while 1:
     CipherText = connectionSocket.recv(1024)
 
     
-    #print ("Received From Client: ", CipherText)
+    print ("Received From Client: ", CipherText.decode("utf-8"))
     g = open("ServerRowley.dat", "w")
-    g.writelines(CipherText.decode("utf-8"))
+    g.write(CipherText.decode("utf-8"))
     g.close()
         
     g = open("ServerRowley.dat", "r")
@@ -35,7 +35,7 @@ while 1:
     position=0
     placeholder="empty"
     for ceaserKey in range(1,CeasrKEY_MAX+1):
-        print(ceaserKey)
+        #print(ceaserKey)
         for char in CipherText:
             position=alphabet.index(char)
             position=position-ceaserKey
@@ -51,7 +51,7 @@ while 1:
             #railKey=2
             if railKey<2:
                 continue
-            print(railKey)
+            #print(railKey)
             arr1 = [[placeholder for x in range(len(RailCipherText))]for y in range(railKey)]
             columns=len(RailCipherText)
             row=0
