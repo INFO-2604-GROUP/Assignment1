@@ -20,7 +20,7 @@ keyWords=["Rowley","murders","the"]
 
 while 1:
     connectionSocket, addr = serverSocket.accept()
-    CipherText = connectionSocket.recv(1024)
+    CipherText = connectionSocket.recv(1600)
 
     
     print ("Received From Client: ", CipherText.decode("utf-8"))
