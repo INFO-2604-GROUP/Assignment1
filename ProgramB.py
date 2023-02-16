@@ -16,6 +16,8 @@ CeasrKEY_MAX_str=input("From 1 to (unknown), how many ceasar cipher keys do you 
 RailKEY_MAX=int(RailKEY_MAX_str)
 CeasrKEY_MAX=int(CeasrKEY_MAX_str)
 
+keyWords=["Rowley","murders","the"]
+
 while 1:
     connectionSocket, addr = serverSocket.accept()
     CipherText = connectionSocket.recv(1024)
@@ -23,11 +25,12 @@ while 1:
     
     print ("Received From Client: ", CipherText.decode("utf-8"))
     g = open("ServerRowley.dat", "w")
-    g.write(CipherText.decode("utf-8"))
+    g.writelines(CipherText.decode("utf-8"))
     g.close()
         
     g = open("ServerRowley.dat", "r")
     CipherText=g.read()
+    g.close()
     
     #print(CipherText)
     #Ceaser Decryption
@@ -96,8 +99,23 @@ while 1:
                             
                 if down==False:
                     row=row-1
-            print()
-            print(''.join(plainText))
+            #plainText=''.join(plainText)
+            match=False
+            for char in plainText:
+                temp=char    
+                for keyword in keyWords:
+                    for letter in keyword:
+                            if letter==temp:
+                                match=True
+                                temp=next(plainText)
+                            else:
+                                if temp==' ':
+                                    match=True
+                                match=False
+                    if match==True:
+                        print()
+                        print(plainText)
+            
                 
    
     connectionSocket.close()
