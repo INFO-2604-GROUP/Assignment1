@@ -1,3 +1,6 @@
+#REYHAN MAHARAJ 816026196
+#CHE DICKENSON 816024590
+
 from socket import *
 
 alphabet=['\n',' ','!','$','%','&','(',')','*','+',',','-','.','/',':',';','<','=','>','?','@','^','_',',','~','A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
@@ -11,12 +14,12 @@ serverSocket.bind(("",serverPort))
 serverSocket.listen(1)
 
 print("How many keys do you wish to use to crack the encryption")
-RailKEY_MAX_str=input("From 1 to (unknown), how many rail cipher keys do you want to try? : ")
-CeasrKEY_MAX_str=input("From 1 to (unknown), how many ceasar cipher keys do you want to try? : ")
+RailKEY_MAX_str=input("From 2 to (user input), how many rail cipher keys do you want to try? : ")
+CeasrKEY_MAX_str=input("From 1 to (user input), how many ceasar cipher keys do you want to try? : ")
 RailKEY_MAX=int(RailKEY_MAX_str)
 CeasrKEY_MAX=int(CeasrKEY_MAX_str)
 
-keyWords=["Rowley","murders","the"]
+keyWords=["Rowley","murders"]
 
 while 1:
     connectionSocket, addr = serverSocket.accept()
@@ -32,13 +35,13 @@ while 1:
     CipherText=g.read()
     g.close()
     
-    #print(CipherText)
+    
     #Ceaser Decryption
     RailCipherText=[]
     position=0
     placeholder="empty"
     for ceaserKey in range(1,CeasrKEY_MAX+1):
-        #print(ceaserKey)
+       
         for char in CipherText:
             position=alphabet.index(char)
             position=position-ceaserKey
@@ -48,13 +51,13 @@ while 1:
             else:
                 RailCipherText.append(alphabet[position])
             
-        #+print(RailCipherText)
+        
         #Rail Fence Decryption
         for railKey in range(2,RailKEY_MAX+2):
-            #railKey=2
+            
             if railKey<2:
                 continue
-            #print(railKey)
+            
             arr1 = [[placeholder for x in range(len(RailCipherText))]for y in range(railKey)]
             columns=len(RailCipherText)
             row=0
@@ -102,35 +105,26 @@ while 1:
                     row=row-1
             plainText=''.join(plainText)
             
-            #match=False
+           
             match=False
             x=0
-            #x=0
-            #plainText=str(plainText)
-            for char in plainText:
-                for keyword in keyWords:
-                    temp=char    
-                    for pos in range(len(keyword)):
-                        
-                        if keyword[pos]==temp:
-                            match=True
-                            temp=next(iter(plainText))
-                        else:
-                               # if temp==' ':
-                                #    match=True
-                            match=False
-                    pos=0    
-                    if match==True:
-                        print()
-                        print(plainText)
-                if match==True:
-                    break
+            
+            for keyword in keyWords:
+                if plainText.find(keyword)!=-1:
+                    match=True
+                else:
+                    match=False
             if match==True:
                 break
         if match==True:
-                break
+            break    
     if match==True:
-                break
+        print("The Rail Fence Cipher key is " + str(railKey))
+        print("The Caesar Cipher key is " + str(ceaserKey))
+        print()
+        print(plainText)
+        break
+            
                 
    
     connectionSocket.close()
