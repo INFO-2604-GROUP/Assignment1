@@ -23,7 +23,7 @@ while 1:
     CipherText = connectionSocket.recv(1600)
 
     
-    print ("Received From Client: ", CipherText.decode("utf-8"))
+    #print ("Received From Client: ", CipherText.decode("utf-8"))
     g = open("ServerRowley.dat", "w")
     g.writelines(CipherText.decode("utf-8"))
     g.close()
