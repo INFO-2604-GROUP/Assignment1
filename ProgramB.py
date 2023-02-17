@@ -88,6 +88,7 @@ while 1:
             for col in range(columns):
                 if arr1[row][col]!=placeholder:
                     plainText.append(arr1[row][col])
+                    
                 if row==0:
                     down=True
                         
@@ -99,21 +100,26 @@ while 1:
                             
                 if down==False:
                     row=row-1
-            #plainText=''.join(plainText)
+            plainText=''.join(plainText)
+            
+            #match=False
             match=False
             x=0
+            #x=0
             #plainText=str(plainText)
             for char in plainText:
                 for keyword in keyWords:
                     temp=char    
                     for pos in range(len(keyword)):
-                            if keyword[pos]==temp:
-                                match=True
-                                temp=next(iter(plainText))
-                            else:
+                        
+                        if keyword[pos]==temp:
+                            match=True
+                            temp=next(iter(plainText))
+                        else:
                                # if temp==' ':
                                 #    match=True
-                                match=False
+                            match=False
+                    pos=0    
                     if match==True:
                         print()
                         print(plainText)
@@ -121,7 +127,10 @@ while 1:
                     break
             if match==True:
                 break
-            
+        if match==True:
+                break
+    if match==True:
+                break
                 
    
     connectionSocket.close()
