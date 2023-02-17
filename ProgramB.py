@@ -101,12 +101,13 @@ while 1:
                     row=row-1
             #plainText=''.join(plainText)
             match=False
+            x=0
             #plainText=str(plainText)
             for char in plainText:
                 for keyword in keyWords:
                     temp=char    
-                    for letter in keyword:
-                            if letter==temp:
+                    for pos in range(len(keyword)):
+                            if keyword[pos]==temp:
                                 match=True
                                 temp=next(iter(plainText))
                             else:
